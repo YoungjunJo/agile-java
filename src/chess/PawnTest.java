@@ -9,8 +9,6 @@ public class PawnTest extends TestCase{
 		Pawn pawn;
 		
 		
-		
-		
-	}	
+	}
 	
 }
