@@ -4,13 +4,16 @@ import junit.framework.TestCase;
 
 public class PawnTest extends TestCase{
 
+	static final String WHITE = "white";
+	static final String BLACK = "black";
+	
 	public void testCreate(){
 		Pawn firstPawn = new Pawn();
-		firstPawn.setColor("white");
-		assertEquals("white", firstPawn.getColor());
+		firstPawn.setColor(WHITE);
+		assertEquals(WHITE, firstPawn.getColor());
 		Pawn secondPawn = new Pawn();
-		secondPawn.setColor("black");
-		assertEquals("black", secondPawn.getColor());
+		secondPawn.setColor(BLACK);
+		assertEquals(BLACK, secondPawn.getColor());
 		
 	}
 }
