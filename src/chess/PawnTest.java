@@ -8,4 +8,10 @@ public class PawnTest extends TestCase{
 		
 	}
 	
+	
+	
+	
+	
+	
+	
 }
