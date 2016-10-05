@@ -9,11 +9,22 @@ public class PawnTest extends TestCase{
 	
 	public void testCreate(){
 		Pawn firstPawn = new Pawn();
+		//firstPawn.setColor(WHITE);
+		assertEquals(WHITE, firstPawn.getColor());
+		
+	}
+	
+	/* chap01
+	public void testCreate(){
+		Pawn firstPawn = new Pawn();
 		firstPawn.setColor(WHITE);
 		assertEquals(WHITE, firstPawn.getColor());
 		Pawn secondPawn = new Pawn();
 		secondPawn.setColor(BLACK);
 		assertEquals(BLACK, secondPawn.getColor());
-		
 	}
+	*/
+	
+	
+	
 }
