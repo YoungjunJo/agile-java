@@ -1,8 +1,9 @@
 package chess;
 
-import static chess.PawnTest.WHITE;
-
 public class Pawn{
+	static final String WHITE = "white";
+	static final String BLACK = "black";
+	
 	String color;
 	
 	public Pawn(){

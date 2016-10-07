@@ -2,9 +2,11 @@ package chess;
 
 import junit.framework.TestCase;
 
+import static chess.Pawn.WHITE;
+import static chess.Pawn.BLACK;
+
 public class PawnTest extends TestCase{
-	static final String WHITE = "white";
-	static final String BLACK = "black";
+
 	
 	public void testCreate(){
 		Pawn firstPawn = new Pawn();
