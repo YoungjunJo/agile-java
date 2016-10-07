@@ -1,9 +1,9 @@
-package chess;
+package pieces;
+
+import static pieces.Pawn.BLACK;
+import static pieces.Pawn.WHITE;
 
 import junit.framework.TestCase;
-
-import static chess.Pawn.WHITE;
-import static chess.Pawn.BLACK;
 
 public class PawnTest extends TestCase{
 
