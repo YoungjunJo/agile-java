@@ -21,8 +21,7 @@ public class BoardTest extends junit.framework.TestCase{
 		assertEquals(BLACK, secondPawn.getColor());
 		assertEquals(2, board.getNumberOfPawns());
 		//보드에 놓여져 있는 말의 목록 2번 확인 
-		System.out.println(board.get(1));
-		
+		System.out.println(board.get(1));	
 		
 	}
 }
