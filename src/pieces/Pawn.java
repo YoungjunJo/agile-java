@@ -8,16 +8,18 @@ package pieces;
 public class Pawn{
 	public static final String WHITE = "white";
 	public static final String BLACK = "black";
+	public static final int CHESS_ROW = 8 ;
+	public static final int CHESS_COLUMN = 8 ;
 	
 	String color;
-	char side;
+	char name;
 	
 	/**
 	 * Constructs a Pawn and set the color WHITE
 	 */
 	public Pawn(){
 		color=WHITE;
-		side='p';
+		name='p';
 		}
 	
 	/**
@@ -26,6 +28,7 @@ public class Pawn{
 	 */
 	public Pawn(String color){
 		this.color=color;
+		name='P';
 	}
 	
 	/**
@@ -33,9 +36,17 @@ public class Pawn{
 	 * @param color the Pawn has
 	 * @param side the Pawn has
 	 */
-	public Pawn(String color, char side){
+	public Pawn(String color, char name){
 		this.color=color;
-		this.side='P';
+		this.name=name;
+	}
+	
+	/**
+	 * Constructs a Pawn having a specific name
+	 * @param name the Pawn has
+	 */
+	public Pawn(char name){
+		this.name=name;
 	}
 	
 	/**
@@ -58,16 +69,16 @@ public class Pawn{
 	 * Getting a pawn's side 
 	 * @return side the Pawn has
 	 */
-	public char getSide(){
-		return side;
+	public char getName(){
+		return name;
 	}
 	
 	/**
 	 * Setting a pawn's side
 	 * @param side the Pawn has
 	 */
-	public void setSide(char side){
-		this.side=side;
+	public void setName(char name){
+		this.name=name;
 	}
 	
 }
