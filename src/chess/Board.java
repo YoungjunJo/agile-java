@@ -9,14 +9,14 @@ import static pieces.Pawn.CHESS_ROW;
  * Provides a representation of a Chess Board
  * @author JYJ
  */
-public class Board{
+public class Board {
 	private ArrayList<ArrayList<Pawn>> pawns = new ArrayList<ArrayList<Pawn>>();
 
 	/**
 	 * Adding a Pawn on the ArrayList
 	 * @param pawn the Pawn will be added at the ArrayList
 	 */
-	public void addPawn(ArrayList<Pawn> pawn){
+	private void addPawn(ArrayList<Pawn> pawn) {
 		pawns.add(pawn);		
 	}
 	
@@ -24,7 +24,7 @@ public class Board{
 	 * Getting a number of pawns
 	 * @return Returns the number of pawns in this list.
 	 */
-	int getNumberOfPawns(){
+	private int getNumberOfPawns() {
 		return pawns.size();
 	}
 	
@@ -32,14 +32,14 @@ public class Board{
 	 * Getting a Pawn's position
 	 * @return Returns the pawn at the specified position in this list.
 	 */
-	ArrayList<Pawn> get(int index){
+	public ArrayList<Pawn> get(int index) {
 		return pawns.get(index);
 	}
 	
 	/**
 	 * Setting 8 row on the chess board
 	 */
-	public void initialize(){
+	public void initialize() {
 		ArrayList<Pawn> row0 = new ArrayList<Pawn>();
 		ArrayList<Pawn> row1 = new ArrayList<Pawn>();
 		ArrayList<Pawn> row2 = new ArrayList<Pawn>();
@@ -50,21 +50,21 @@ public class Board{
 		ArrayList<Pawn> row7 = new ArrayList<Pawn>();
 		
 		setBlankPawn(row0);
-		addStartingWhitePawn(row1);
+		setStartingWhitePawn(row1);
 		setBlankPawn(row2);
 		setBlankPawn(row3);
 		setBlankPawn(row4);
 		setBlankPawn(row5);
-		addStartingBlackPawn(row6);
+		setStartingBlackPawn(row6);
 		setBlankPawn(row7);
 	}
 
 	/**
-	 * Adding White 8 Pawns on the ArrayList
+	 * Setting White 8 Pawns on the ArrayList
 	 * @param ArrayList specific row
 	 */
-	void addStartingWhitePawn(ArrayList<Pawn> row){
-		for(int i=0; i<CHESS_ROW; i++)
+	private void setStartingWhitePawn(ArrayList<Pawn> row) {
+		for(int i = 0; i < CHESS_ROW; i++)
 		{
 			row.add(new Pawn());
 		}
@@ -72,11 +72,11 @@ public class Board{
 	}
 	
 	/**
-	 * Adding Black 8 Pawns on the ArrayList
+	 * Setting Black 8 Pawns on the ArrayList
 	 * @param ArrayList specific row
 	 */
-	void addStartingBlackPawn(ArrayList<Pawn> row){
-		for(int i=0; i<CHESS_ROW; i++)
+	private void setStartingBlackPawn(ArrayList<Pawn> row) {
+		for(int i = 0; i < CHESS_ROW; i++)
 		{
 			row.add(new Pawn(BLACK));
 		}
@@ -87,8 +87,8 @@ public class Board{
 	 * Adding Blank(='.') 8 Pawns on the ArrayList
 	 * @param ArrayList specific row
 	 */
-	void setBlankPawn(ArrayList<Pawn> row){
-		for(int i=0; i<CHESS_ROW; i++)
+	private void setBlankPawn(ArrayList<Pawn> row) {
+		for(int i = 0; i < CHESS_ROW; i++)
 		{
 			row.add(new Pawn('.'));
 		}

@@ -4,10 +4,10 @@ import static pieces.Pawn.WHITE;
 
 import junit.framework.TestCase;
 
-public class PawnTest extends TestCase{
+public class PawnTest extends TestCase {
 
 	
-	public void testCreate(){
+	public void testCreate() {
 		Pawn firstPawn = new Pawn();
 		assertEquals(WHITE, firstPawn.getColor());
 	}

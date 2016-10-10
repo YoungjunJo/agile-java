@@ -1,17 +1,18 @@
 package chess;
 
 import junit.framework.TestCase;
+import static pieces.Pawn.CHESS_ROW;
 
-public class BoardTest extends TestCase{
+public class BoardTest extends TestCase {
 	private Board board;
 	static final String NEWLINE = 
 			System.getProperty("line.separator");
 	
-	public void setUp(){
+	public void setUp() {
 		board = new Board();
 	}
 	
-	public void testCreate(){
+	public void testCreate() {
 		board.initialize();
 		String printChess = printChess();
 		assertEquals("........"+ NEWLINE + 
@@ -22,15 +23,16 @@ public class BoardTest extends TestCase{
 				"........"+ NEWLINE + 
 				"PPPPPPPP"+ NEWLINE + 
 				"........"+ NEWLINE, printChess);
+		
 		System.out.println(printChess);
 	}
 	
-	String printChess(){
+	private String printChess() {
 		StringBuilder buffer = new StringBuilder();
 		
-		for(int i=0; i<8 ; i++)
+		for(int i = 0; i < CHESS_ROW ; i++)
 		{
-			for(int j=0; j<8 ; j++)
+			for(int j = 0; j < CHESS_ROW ; j++)
 			{
 				buffer.append(board.get(i).get(j).getName());	
 			}
