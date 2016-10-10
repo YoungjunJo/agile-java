@@ -1,6 +1,5 @@
 package pieces;
 
-import static pieces.Pawn.BLACK;
 import static pieces.Pawn.WHITE;
 
 import junit.framework.TestCase;

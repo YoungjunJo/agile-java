@@ -1,11 +1,8 @@
 package chess;
 
 import junit.framework.TestCase;
-import pieces.Pawn;
-import static pieces.Pawn.BLACK;
-import static pieces.Pawn.WHITE;
 
-public class BoardTest extends junit.framework.TestCase{
+public class BoardTest extends TestCase{
 	private Board board;
 	static final String NEWLINE = 
 			System.getProperty("line.separator");
