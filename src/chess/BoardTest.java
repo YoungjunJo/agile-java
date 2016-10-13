@@ -2,12 +2,10 @@ package chess;
 
 import junit.framework.TestCase;
 import static pieces.Pawn.CHESS_ROW;
+import static util.StringUtil.NEWLINE;
 
 public class BoardTest extends TestCase {
-	private Board board;
-	static final String NEWLINE = 
-			System.getProperty("line.separator");
-	
+	private Board board;	
 	public void setUp() {
 		board = new Board();
 	}
