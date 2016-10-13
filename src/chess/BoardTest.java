@@ -11,7 +11,7 @@ public class BoardTest extends TestCase {
 	public void setUp() {
 		board = new Board();
 	}
-	
+
 	public void testCreate() {
 		board.initialize();
 		String printChess = printChess();
@@ -26,7 +26,7 @@ public class BoardTest extends TestCase {
 		
 		System.out.println(printChess);
 	}
-	
+
 	private String printChess() {
 		StringBuilder buffer = new StringBuilder();
 		
@@ -34,12 +34,13 @@ public class BoardTest extends TestCase {
 		{
 			for(int j = 0; j < CHESS_ROW ; j++)
 			{
-				buffer.append(board.get(i).get(j).getName());	
+				buffer.append(board.pawns[i][j].name);	
 			}
 			buffer.append(NEWLINE);
 		}
 		return buffer.toString();
 	}
+
 		
 }
 

@@ -12,7 +12,7 @@ public class Pawn {
 	public static final int CHESS_COLUMN = 8 ;
 	
 	private String color;
-	private char name;
+	public char name;
 	
 	/**
 	 * Constructs a Pawn
@@ -68,7 +68,7 @@ public class Pawn {
 	}
 	
 	/**
-	 * Getting a pawn's side 
+	 * Getting a pawn's name
 	 * @return side the Pawn has
 	 */
 	public char getName() {
@@ -76,7 +76,7 @@ public class Pawn {
 	}
 	
 	/**
-	 * Setting a pawn's side
+	 * Setting a pawn's name
 	 * @param side the Pawn has
 	 */
 	public void setName(char name) {
