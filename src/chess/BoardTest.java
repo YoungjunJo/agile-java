@@ -1,8 +1,7 @@
 package chess;
 
 import junit.framework.TestCase;
-import static pieces.Piece.CHESS_ROW;
-import static util.StringUtil.NEWLINE;
+import util.StringUtil;
 
 public class BoardTest extends TestCase {
 	private Board board;	
@@ -12,33 +11,14 @@ public class BoardTest extends TestCase {
 
 	public void testCreate() {
 		board.initialize();
-		String printChess = printChess();
-		assertEquals("........"+ NEWLINE + 
-				"pppppppp"+ NEWLINE + 
-				"........"+ NEWLINE + 
-				"........"+ NEWLINE + 
-				"........"+ NEWLINE + 
-				"........"+ NEWLINE + 
-				"PPPPPPPP"+ NEWLINE + 
-				"........"+ NEWLINE, printChess);
-		
-		System.out.println(printChess);
-	}
-
-	private String printChess() {
-		StringBuilder buffer = new StringBuilder();
-		
-		for(int i = 0; i < CHESS_ROW ; i++)
-		{
-			for(int j = 0; j < CHESS_ROW ; j++)
-			{
-				buffer.append(board.pieces[i][j].getName());	
-			}
-			buffer.append(NEWLINE);
-		}
-		return buffer.toString();
-	}
-
-		
+		assertEquals(32, board.pieceCount());
+		String blankRank = StringUtil.appendNewLine("........");
+		assertEquals(
+			StringUtil.appendNewLine("RNBQKBNR") +
+			StringUtil.appendNewLine("PPPPPPPP") + 
+			blankRank + blankRank + blankRank + blankRank +
+			StringUtil.appendNewLine("pppppppp") +
+			StringUtil.appendNewLine("rnbqkbnr"),
+			board.print());
+	}	
 }
-

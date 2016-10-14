@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import pieces.Piece;
 import static pieces.Piece.BLACK;
 import static pieces.Piece.WHITE;
+import static util.StringUtil.NEWLINE;
 import static pieces.Piece.CHESS_ROW;
-
+import static pieces.Piece.CHESS_COLUMN;
 /**
  * Provides a representation of a Chess Board
  * @author JYJ
@@ -42,20 +43,62 @@ public class Board {
 	 * Setting 8 row on the chess board
 	 */
 	public void initialize() {
+		whiteInitialize();
+		blackInitialize();
 		
-		for(int i = 0; i < CHESS_ROW ; i++){
-			
-			for(int j = 0 ; j < CHESS_ROW ; j++){
+		for(int i = 2; i < 6 ; i++){
+			for(int j = 0 ; j < CHESS_COLUMN ; j++){
 				pieces[i][j] = Piece.create("none", ".");
 			}			
 		}
-		for(int i = 0 ; i< CHESS_ROW ; i++){
-			pieces[1][i].setColor(WHITE);
-			pieces[1][i].setName("p");
+	}
+	public void whiteInitialize() {
+		//WHITE Chess Pieces Rook, Night, Bishop, King, Queen
+		pieces[0][0] = Piece.create(WHITE, "R");
+		pieces[0][1] = Piece.create(WHITE, "N");
+		pieces[0][2] = Piece.create(WHITE, "B");
+		pieces[0][3] = Piece.create(WHITE, "Q");
+		pieces[0][4] = Piece.create(WHITE, "K");
+		pieces[0][5] = Piece.create(WHITE, "B");
+		pieces[0][6] = Piece.create(WHITE, "N");
+		pieces[0][7] = Piece.create(WHITE, "R");
+		
+		for(int i = 0 ; i< CHESS_COLUMN ; i++){
+			pieces[1][i] = Piece.create(WHITE, "P");
 		}
-		for(int i = 0 ; i< CHESS_ROW ; i++){
-			pieces[6][i].setColor(BLACK);
-			pieces[6][i].setName("P");
+	}
+	
+	public void blackInitialize() {
+		pieces[7][0] = Piece.create(BLACK, "r");
+		pieces[7][1] = Piece.create(BLACK, "n");
+		pieces[7][2] = Piece.create(BLACK, "b");
+		pieces[7][3] = Piece.create(BLACK, "q");
+		pieces[7][4] = Piece.create(BLACK, "k");
+		pieces[7][5] = Piece.create(BLACK, "b");
+		pieces[7][6] = Piece.create(BLACK, "n");
+		pieces[7][7] = Piece.create(BLACK, "r");
+		for(int i = 0 ; i< CHESS_COLUMN ; i++){
+			pieces[6][i] = Piece.create(BLACK, "p");
 		}
+	}
+	
+	public String print() {
+		StringBuilder buffer = new StringBuilder();
+		
+		for(int i = 0; i < CHESS_ROW ; i++)
+		{
+			for(int j = 0; j < CHESS_COLUMN ; j++)
+			{
+				buffer.append(pieces[i][j].getName());	
+			}
+			buffer.append(NEWLINE);
+		}
+		return buffer.toString();
+	}
+
+	
+	public int pieceCount() {
+		
+		return Piece.getCount();
 	}
 }

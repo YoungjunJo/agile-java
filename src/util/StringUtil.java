@@ -12,7 +12,7 @@ public class StringUtil {
 	/**
 	 * Adding a NEWLINE
 	 */
-	public static void addNewLine(){
-		System.out.println(NEWLINE);
+	public static String appendNewLine(String string) {
+		return string + NEWLINE;
 	}
 }

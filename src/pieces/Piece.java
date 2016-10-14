@@ -13,6 +13,7 @@ public class Piece {
 	
 	private String color;
 	private String name;
+	static int count;
 	
 	/**
 	 * Constructs a Pawn having a specific color and name
@@ -30,6 +31,8 @@ public class Piece {
 	 * @param side the Pawn has
 	 */
 	public static Piece create(String color, String name) {
+		if(color == WHITE || color == BLACK)
+		incrementCount();
 		return new Piece(color, name);
 	}
 	/**
@@ -41,27 +44,42 @@ public class Piece {
 	}
 
 	/**
-	 * Setting a pawn's color
-	 * @param color the Pawn has
+	 * Setting a Piece's color
+	 * @param color the Piece has
 	 */
 	public void setColor(String color) {
 		this.color = color;
 	}
 	
 	/**
-	 * Getting a pawn's name
-	 * @return side the Pawn has
+	 * Getting a Piece's name
+	 * @return side the Piece has
 	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Setting a pawn's name
-	 * @param side the Pawn has
+	 * Setting a Piece's name
+	 * @param name the Piece has
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * Getting a Piece's count
+	 * @return count
+	 */
+	public static int getCount() {
+		return count;
+	}
+	
+	/**
+	 * increment a Piece's count
+	 */
+	private static void incrementCount() {
+		++count;
 	}
 	
 }
