@@ -1,7 +1,7 @@
 package chess;
 
 import junit.framework.TestCase;
-import static pieces.Pawn.CHESS_ROW;
+import static pieces.Piece.CHESS_ROW;
 import static util.StringUtil.NEWLINE;
 
 public class BoardTest extends TestCase {
@@ -32,7 +32,7 @@ public class BoardTest extends TestCase {
 		{
 			for(int j = 0; j < CHESS_ROW ; j++)
 			{
-				buffer.append(board.pawns[i][j].name);	
+				buffer.append(board.pieces[i][j].getName());	
 			}
 			buffer.append(NEWLINE);
 		}
