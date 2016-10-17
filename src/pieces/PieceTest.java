@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 public class PieceTest extends TestCase {
 
 	
-	public void testCreate() {
+	public void testPieceCreate() {
 
 	}
 }

@@ -9,7 +9,7 @@ public class BoardTest extends TestCase {
 		board = new Board();
 	}
 
-	public void testCreate() {
+	public void testBoardCreate() {
 		board.initialize();
 		assertEquals(32, board.pieceCount());
 		String blankRank = StringUtil.appendNewLine("........");
