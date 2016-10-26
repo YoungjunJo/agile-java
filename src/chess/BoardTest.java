@@ -1,7 +1,10 @@
 package chess;
 
 import junit.framework.TestCase;
+import pieces.Piece.Color;
+import pieces.Piece.Type;
 import util.StringUtil;
+import chess.Board;
 
 public class BoardTest extends TestCase {
 	private Board board;	
@@ -20,5 +23,7 @@ public class BoardTest extends TestCase {
 			StringUtil.appendNewLine("pppppppp") +
 			StringUtil.appendNewLine("rnbqkbnr"),
 			board.print());
+		
+		assertEquals(8, board.getNumberOfPiece(Color.BLACK, Type.PAWN));
 	}	
 }

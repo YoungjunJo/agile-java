@@ -14,7 +14,7 @@ import static pieces.Piece.CHESS_COLUMN;
  */
 public class Board {
 	Piece[][] pieces =new Piece[8][8];
-	
+	int piecesCount=0;
 	/**
 	 * Adding a Pawn on the ArrayList
 	 * @param pawn the Pawn will be added at the ArrayList
@@ -28,8 +28,21 @@ public class Board {
 	 * Getting a number of pawns
 	 * @return Returns the number of pawns in this list.
 	 */
-	private int getNumberOfPawns() {
-		return pieces.length;
+	public int getNumberOfPiece(Color color, Type type) {
+		//question for(자료형 변수:배열) 형식으로 2중배열도 가능한가
+		for(int i = 0 ; i < CHESS_COLUMN ; i++)
+			for(int j = 0 ; j < CHESS_COLUMN ; j++)
+				if((pieces[i][j].getType()==type) && (pieces[i][j].getColor()==color)){
+					System.out.print(i);
+					System.out.print(j);
+					System.out.print(pieces[i][j].getType());
+					System.out.print(pieces[i][j].getColor());
+					piecesCount++;
+					System.out.println(piecesCount);
+				}
+					
+		return piecesCount;
+					
 	}
 	
 	/**
