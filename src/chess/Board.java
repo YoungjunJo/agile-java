@@ -2,8 +2,7 @@ package chess;
 
 import java.util.ArrayList;
 import pieces.Piece;
-import static pieces.Piece.BLACK;
-import static pieces.Piece.WHITE;
+
 import static util.StringUtil.NEWLINE;
 import static pieces.Piece.CHESS_ROW;
 import static pieces.Piece.CHESS_COLUMN;
@@ -48,37 +47,38 @@ public class Board {
 		
 		for(int i = 2; i < 6 ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
-				pieces[i][j] = Piece.create("none", ".");
+				//Piece.Color color;
+				pieces[i][j] = Piece.create(Piece.Color.NONE, ".");
 			}			
 		}
 	}
 	public void whiteInitialize() {
 		//WHITE Chess Pieces Rook, Night, Bishop, King, Queen
-		pieces[0][0] = Piece.create(WHITE, "R");
-		pieces[0][1] = Piece.create(WHITE, "N");
-		pieces[0][2] = Piece.create(WHITE, "B");
-		pieces[0][3] = Piece.create(WHITE, "Q");
-		pieces[0][4] = Piece.create(WHITE, "K");
-		pieces[0][5] = Piece.create(WHITE, "B");
-		pieces[0][6] = Piece.create(WHITE, "N");
-		pieces[0][7] = Piece.create(WHITE, "R");
+		pieces[0][0] = Piece.create(Piece.Color.WHITE, "R");
+		pieces[0][1] = Piece.create(Piece.Color.WHITE, "N");
+		pieces[0][2] = Piece.create(Piece.Color.WHITE, "B");
+		pieces[0][3] = Piece.create(Piece.Color.WHITE, "Q");
+		pieces[0][4] = Piece.create(Piece.Color.WHITE, "K");
+		pieces[0][5] = Piece.create(Piece.Color.WHITE, "B");
+		pieces[0][6] = Piece.create(Piece.Color.WHITE, "N");
+		pieces[0][7] = Piece.create(Piece.Color.WHITE, "R");
 		
 		for(int i = 0 ; i< CHESS_COLUMN ; i++){
-			pieces[1][i] = Piece.create(WHITE, "P");
+			pieces[1][i] = Piece.create(Piece.Color.WHITE, "P");
 		}
 	}
 	
 	public void blackInitialize() {
-		pieces[7][0] = Piece.create(BLACK, "r");
-		pieces[7][1] = Piece.create(BLACK, "n");
-		pieces[7][2] = Piece.create(BLACK, "b");
-		pieces[7][3] = Piece.create(BLACK, "q");
-		pieces[7][4] = Piece.create(BLACK, "k");
-		pieces[7][5] = Piece.create(BLACK, "b");
-		pieces[7][6] = Piece.create(BLACK, "n");
-		pieces[7][7] = Piece.create(BLACK, "r");
+		pieces[7][0] = Piece.create(Piece.Color.BLACK, "r");
+		pieces[7][1] = Piece.create(Piece.Color.BLACK, "n");
+		pieces[7][2] = Piece.create(Piece.Color.BLACK, "b");
+		pieces[7][3] = Piece.create(Piece.Color.BLACK, "q");
+		pieces[7][4] = Piece.create(Piece.Color.BLACK, "k");
+		pieces[7][5] = Piece.create(Piece.Color.BLACK, "b");
+		pieces[7][6] = Piece.create(Piece.Color.BLACK, "n");
+		pieces[7][7] = Piece.create(Piece.Color.BLACK, "r");
 		for(int i = 0 ; i< CHESS_COLUMN ; i++){
-			pieces[6][i] = Piece.create(BLACK, "p");
+			pieces[6][i] = Piece.create(Piece.Color.BLACK, "p");
 		}
 	}
 	
