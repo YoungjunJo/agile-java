@@ -99,7 +99,7 @@ public class Piece {
 		*/
 	}
 	
-	char getRepresentation(){
+	public char getRepresentation(){
 		return this.representation;
 	}
 	
@@ -184,36 +184,11 @@ public class Piece {
 			return new BlackPiece(Type.KING, KING_REPRESENTATION);
 	}
 	
-	/*
-	public static BlackPiece createBlackPawn(){
-		incrementCount();
-	return new BlackPiece(Type.PAWN, PAWN_REPRESENTATION);
+	public void setType(Type type){
+		this.type = type; 
 	}
 	
-	public static BlackPiece createBlackRook(){
-		incrementCount();
-	return new BlackPiece(Type.ROOK, ROOK_REPRESENTATION);
+	public void setColor(Color color){
+		this.color = color; 
 	}
-	
-	public static BlackPiece createBlackKnight(){
-		incrementCount();
-	return new BlackPiece(Type.KNIGHT, KNIGHT_REPRESENTATION);
-	}
-
-	public static BlackPiece createBlackBishop(){
-		incrementCount();
-	return new BlackPiece(Type.BISHOP, BISHOP_REPRESENTATION);
-	}
-	
-	public static BlackPiece createBlackQueen(){
-		incrementCount();
-	return new BlackPiece(Type.QUEEN, QUEEN_REPRESENTATION);
-	}
-	
-	public static BlackPiece createBlackKing(){
-		incrementCount();
-	return new BlackPiece(Type.KING, KING_REPRESENTATION);
-	}
-	 */
-	
 }

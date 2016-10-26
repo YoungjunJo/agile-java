@@ -2,6 +2,8 @@ package chess;
 
 import java.util.ArrayList;
 import pieces.Piece;
+import pieces.Piece.Color;
+import pieces.Piece.Type;
 
 import static util.StringUtil.NEWLINE;
 import static pieces.Piece.CHESS_ROW;
@@ -17,9 +19,9 @@ public class Board {
 	 * Adding a Pawn on the ArrayList
 	 * @param pawn the Pawn will be added at the ArrayList
 	 */
-	private void addPawn(int i, int j, String color, String name) {
+	private void addPawn(int i, int j, Color color, Type type) {
+		pieces[i][j].setType(type);
 		pieces[i][j].setColor(color);
-		pieces[i][j].setName(name);
 	}
 	
 	/**
@@ -44,41 +46,43 @@ public class Board {
 	public void initialize() {
 		whiteInitialize();
 		blackInitialize();
-		
+		noPieceInitialize();	
+	}
+	
+	private void noPieceInitialize() {
 		for(int i = 2; i < 6 ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
-				//Piece.Color color;
-				pieces[i][j] = Piece.create(Piece.Color.NONE, ".");
+				pieces[i][j] = Piece.noPiece();
 			}			
 		}
 	}
-	public void whiteInitialize() {
+	
+	private void blackInitialize() {
 		//WHITE Chess Pieces Rook, Night, Bishop, King, Queen
-		pieces[0][0] = Piece.create(Piece.Color.WHITE, "R");
-		pieces[0][1] = Piece.create(Piece.Color.WHITE, "N");
-		pieces[0][2] = Piece.create(Piece.Color.WHITE, "B");
-		pieces[0][3] = Piece.create(Piece.Color.WHITE, "Q");
-		pieces[0][4] = Piece.create(Piece.Color.WHITE, "K");
-		pieces[0][5] = Piece.create(Piece.Color.WHITE, "B");
-		pieces[0][6] = Piece.create(Piece.Color.WHITE, "N");
-		pieces[0][7] = Piece.create(Piece.Color.WHITE, "R");
-		
+		pieces[0][0] = Piece.createRook(Color.BLACK);
+		pieces[0][1] = Piece.createKnight(Color.BLACK);
+		pieces[0][2] = Piece.createBishop(Color.BLACK);
+		pieces[0][3] = Piece.createQueen(Color.BLACK);
+		pieces[0][4] = Piece.createKing(Color.BLACK);
+		pieces[0][5] = Piece.createBishop(Color.BLACK);
+		pieces[0][6] = Piece.createKnight(Color.BLACK);
+		pieces[0][7] = Piece.createRook(Color.BLACK);
 		for(int i = 0 ; i< CHESS_COLUMN ; i++){
-			pieces[1][i] = Piece.create(Piece.Color.WHITE, "P");
+			pieces[1][i] = Piece.createPawn(Color.BLACK);
 		}
 	}
 	
-	public void blackInitialize() {
-		pieces[7][0] = Piece.create(Piece.Color.BLACK, "r");
-		pieces[7][1] = Piece.create(Piece.Color.BLACK, "n");
-		pieces[7][2] = Piece.create(Piece.Color.BLACK, "b");
-		pieces[7][3] = Piece.create(Piece.Color.BLACK, "q");
-		pieces[7][4] = Piece.create(Piece.Color.BLACK, "k");
-		pieces[7][5] = Piece.create(Piece.Color.BLACK, "b");
-		pieces[7][6] = Piece.create(Piece.Color.BLACK, "n");
-		pieces[7][7] = Piece.create(Piece.Color.BLACK, "r");
+	public void whiteInitialize() {
+		pieces[7][0] = Piece.createRook(Color.WHITE);
+		pieces[7][1] = Piece.createKnight(Color.WHITE);
+		pieces[7][2] = Piece.createBishop(Color.WHITE);
+		pieces[7][3] = Piece.createQueen(Color.WHITE);
+		pieces[7][4] = Piece.createKing(Color.WHITE);
+		pieces[7][5] = Piece.createBishop(Color.WHITE);
+		pieces[7][6] = Piece.createKnight(Color.WHITE);
+		pieces[7][7] = Piece.createRook(Color.WHITE);
 		for(int i = 0 ; i< CHESS_COLUMN ; i++){
-			pieces[6][i] = Piece.create(Piece.Color.BLACK, "p");
+			pieces[6][i] = Piece.createPawn(Piece.Color.WHITE);
 		}
 	}
 	
@@ -89,7 +93,7 @@ public class Board {
 		{
 			for(int j = 0; j < CHESS_COLUMN ; j++)
 			{
-				buffer.append(pieces[i][j].getName());	
+				buffer.append(pieces[i][j].getRepresentation());	
 			}
 			buffer.append(NEWLINE);
 		}
