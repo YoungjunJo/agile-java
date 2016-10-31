@@ -19,7 +19,7 @@ public class Board {
 	 * Adding a Pawn on the ArrayList
 	 * @param pawn the Pawn will be added at the ArrayList
 	 */
-	private void addPawn(int i, int j, Color color, Type type) {
+	private void addPiece(int i, int j, Color color, Type type) {
 		pieces[i][j].setType(type);
 		pieces[i][j].setColor(color);
 	}
@@ -33,12 +33,7 @@ public class Board {
 		for(int i = 0 ; i < CHESS_COLUMN ; i++)
 			for(int j = 0 ; j < CHESS_COLUMN ; j++)
 				if((pieces[i][j].getType()==type) && (pieces[i][j].getColor()==color)){
-					System.out.print(i);
-					System.out.print(j);
-					System.out.print(pieces[i][j].getType());
-					System.out.print(pieces[i][j].getColor());
 					piecesCount++;
-					System.out.println(piecesCount);
 				}
 					
 		return piecesCount;
@@ -49,7 +44,7 @@ public class Board {
 	 * Getting a pieces first position
 	 * @return Returns the pieces at the specified position in this list.
 	 */
-	public Piece get(int i, int j) {
+	public Piece getPiece(int i, int j) {
 		return pieces[i][j];
 	}
 	
