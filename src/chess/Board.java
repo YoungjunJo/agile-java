@@ -1,23 +1,24 @@
 package chess;
 
-import java.util.ArrayList;
 import pieces.Piece;
 import pieces.Piece.Color;
 import pieces.Piece.Type;
-
 import static util.StringUtil.NEWLINE;
 import static pieces.Piece.CHESS_ROW;
 import static pieces.Piece.CHESS_COLUMN;
+
 /**
  * Provides a representation of a Chess Board
  * @author JYJ
  */
-public class Board {
+public class Board{
 	Piece[][] pieces =new Piece[8][8];
 	int piecesCount=0;
 	/**
-	 * Adding a Pawn on the ArrayList
-	 * @param pawn the Pawn will be added at the ArrayList
+	 * Adding a Piece on the board
+	 * @param color WHITE or BLACK
+	 * @param type  PAWN/ROOK/KINGHT/BISHOP/QUEEN/KING
+	 * @param i, j a specific array location Piece[i][j] 
 	 */
 	public void addPiece(int i, int j, Color color, Type type) {
 		if(type == Type.PAWN)
@@ -35,31 +36,31 @@ public class Board {
 	}
 	
 	/**
-	 * Getting a number of pawns
-	 * @return Returns the number of pawns in this list.
+	 * Getting a number of a specific Pieces
+	 * @param color WHITE or BLACK
+	 * @param type  PAWN/ROOK/KINGHT/BISHOP/QUEEN/KING
+	 * @return Returns the number of a specific Pieces on the Board
 	 */
-	public int getNumberOfPiece(Color color, Type type) {
-		//question for(자료형 변수:배열) 형식으로 2중배열도 가능한가
+	public int getNumberOfSpecificPiece(Color color, Type type) {
+		//question for문(자료형 변수:배열) 형식으로 2중배열도 가능한가
 		for(int i = 0 ; i < CHESS_COLUMN ; i++)
 			for(int j = 0 ; j < CHESS_COLUMN ; j++)
 				if((pieces[i][j].getType()==type) && (pieces[i][j].getColor()==color)){
 					piecesCount++;
 				}
-					
-		return piecesCount;
-					
+		return piecesCount;				
 	}
 	
 	/**
-	 * Getting a pieces first position
-	 * @return Returns the pieces at the specified position in this list.
+	 * Getting a specific position Piece
+	 * @return Returns a Piece
 	 */
 	public Piece getPiece(int i, int j) {
 		return pieces[i][j];
 	}
 	
 	/**
-	 * Setting 8 row on the chess board
+	 * Initializing all Pieces on the chess board
 	 */
 	public void initialize() {
 		whiteInitialize();
@@ -67,24 +68,32 @@ public class Board {
 		noPieceInitialize();	
 	}
 	
+	/**
+	 * Initializing the noPiece(blank) at row 2~6 on the Board
+	 */
 	private void noPieceInitialize() {
 		for(int i = 2; i < 6 ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
-				pieces[i][j] = Piece.noPiece();
+				pieces[i][j] = Piece.createNoPiece();
 			}			
 		}
 	}
 	
+	/**
+	 * Initializing the noPiece(blank) at every row on the Board
+	 */
 	public void allNoPieceInitialize() {
 		for(int i = 0; i < CHESS_COLUMN ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
-				pieces[i][j] = Piece.noPiece();
+				pieces[i][j] = Piece.createNoPiece();
 			}			
 		}
 	}
 	
+	/**
+	 * Initializing Black Pieces
+	 */
 	private void blackInitialize() {
-		//WHITE Chess Pieces Rook, Night, Bishop, King, Queen
 		pieces[0][0] = Piece.createRook(Color.BLACK);
 		pieces[0][1] = Piece.createKnight(Color.BLACK);
 		pieces[0][2] = Piece.createBishop(Color.BLACK);
@@ -98,7 +107,10 @@ public class Board {
 		}
 	}
 	
-	public void whiteInitialize() {
+	/**
+	 * Initializing White Pieces
+	 */
+	private void whiteInitialize() {
 		pieces[7][0] = Piece.createRook(Color.WHITE);
 		pieces[7][1] = Piece.createKnight(Color.WHITE);
 		pieces[7][2] = Piece.createBishop(Color.WHITE);
@@ -112,9 +124,11 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Printing the board state
+	 */
 	public String print() {
 		StringBuilder buffer = new StringBuilder();
-		
 		for(int i = 0; i < CHESS_ROW ; i++)
 		{
 			for(int j = 0; j < CHESS_COLUMN ; j++)
@@ -126,12 +140,12 @@ public class Board {
 		return buffer.toString();
 	}
 
-	
-	public int pieceCount() {
-		
-		return Piece.getCount();
-	}
-	
+	/**
+	 * Getting a total score
+	 * condition - if there is two or more Pawn it gets 0.5 point
+	 * @param color which side
+	 * @return total score
+	 */
 	public double getScore(Color color){
 		double total = 0.0;
 		int adjust = 0;
@@ -146,10 +160,16 @@ public class Board {
 					adjust = 0;
 				}
 			}
-			
 		}
 		return total;
 	}
+	
+	/**
+	 * Finding Pawn at the specific column and counting
+	 * @param i specific location
+	 * @param j specific location
+	 * @return number of Pawns
+	 */
 	private int findPawn(int i, int j){
 		int pawnCount=1;
 		for(int k=i+1; k<CHESS_COLUMN;k++)
@@ -157,10 +177,13 @@ public class Board {
 			pawnCount++;
 		}
 		return pawnCount;
-		
 	}
 	
-	
+	/**
+	 * Grading score Pawn gets 1point, KNIGHT 2.5, BISHOP 3, ROOK 5, Queen 9
+	 * @param piece
+	 * @return
+	 */
 	private double gradeScore(Piece piece){
 		if(piece.type==Type.PAWN){
 			return 1;
@@ -171,6 +194,4 @@ public class Board {
 		else if(piece.type==Type.QUEEN) return 9;
 		return 0;
 	}
-	
-	
 }

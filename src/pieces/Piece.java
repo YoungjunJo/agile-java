@@ -1,12 +1,10 @@
 package pieces;
 
-import pieces.Piece.Color;
 
 /**
  * Provides a representation of a Piece
  * @author JYJ
  */
-
 public class Piece {
 	public static final int CHESS_ROW = 8 ;
 	public static final int CHESS_COLUMN = 8 ;
@@ -22,6 +20,24 @@ public class Piece {
 	public Color color;
 	public char representation;
 	
+	/**
+	 * Provides a representation of a Piece's Color
+	 */	
+	public enum Color{
+		WHITE, BLACK, NONE;
+	};
+	
+	/**
+	 * Provides a representation of a Piece's Type
+	 */	
+	public enum Type{
+		PAWN, ROOK, KNIGHT,BISHOP, QUEEN, KING, NO_PIECE
+	}
+	
+	/**
+	 * Class White Piece
+	 * basically set the color as WHITE
+	 */
 	private static class WhitePiece extends Piece{
 		WhitePiece(Type type, char representation) {
 			this.color = Color.WHITE;
@@ -33,6 +49,10 @@ public class Piece {
 		}
 	}
 
+	/**
+	 * Class Black Piece
+	 * basically set the color as BLACK
+	 */
 	private static class BlackPiece extends Piece{
 		BlackPiece(Type type, char representation) {
 			this.color = Color.BLACK;
@@ -44,12 +64,10 @@ public class Piece {
 		}
 	}
 	
-	static public Piece noPiece(){
-		Piece piece = new NoPiece();
-		return piece;
-	}
-	
-	
+	/**
+	 * Class NOPiece
+	 * basically set the representation as '.'
+	 */
 	private static class NoPiece extends Piece{
 		NoPiece(){
 			this.color = Color.NONE;
@@ -58,54 +76,6 @@ public class Piece {
 		}
 	}
 	
-	
-	/**
-	 * Provides a representation of a Piece's Color
-	 */	
-	public enum Color{
-		WHITE, BLACK, NONE;
-	};
-	
-	public enum Type{
-		PAWN, ROOK, KNIGHT,BISHOP, QUEEN, KING, NO_PIECE
-	}
-	
-	public char getRepresentation(){
-		return this.representation;
-	}
-	
-	public Type getType(){
-		return this.type;
-	}
-
-	public Color getColor(){
-		return this.color;
-	}
-	
-	/**
-	 * Getting a Piece's count
-	 * @return count
-	 */
-	public static int getCount() {
-		return count;
-	}
-	
-	/**
-	 * increment a Piece's count
-	 */
-	private static void incrementCount() {
-		++count;
-	}
-	
-	public boolean isWhite(){
-		return this.color == Color.WHITE;
-		//question1 how to use enum
-	}
-	
-	public boolean isBlack(){
-		return this.color == Color.BLACK;
-	}
-
 	/**
 	 * Factory method Constructing a Piece having a specific color and name
 	 * @param color the Piece has
@@ -159,6 +129,70 @@ public class Piece {
 			return new BlackPiece(Type.KING, KING_REPRESENTATION);
 	}
 	
+	/**
+	 * Factory method constructing NoPiece
+	 * @return
+	 */
+	static public Piece createNoPiece(){
+		Piece piece = new NoPiece();
+		return piece;
+	}
+	
+	/**
+	 * Getting a representation
+	 * @return Piece's representation
+	 */
+	public char getRepresentation(){
+		return this.representation;
+	}
+	
+	/**
+	 * Getting a type
+	 * @return Piece's type
+	 */
+	public Type getType(){
+		return this.type;
+	}
+
+	/**
+	 * Getting a color
+	 * @return Piece's color
+	 */
+	public Color getColor(){
+		return this.color;
+	}
+	
+	/**
+	 * Getting a Piece's count
+	 * @return count
+	 */
+	public static int getCount() {
+		return count;
+	}
+	
+	/**
+	 * Incrementing a Piece's count
+	 */
+	private static void incrementCount() {
+		++count;
+	}
+	
+	/**
+	 * Checking a Piece's color
+	 * @return 
+	 */
+	public boolean isWhite(){
+		return this.color == Color.WHITE;
+	}
+	
+	/**
+	 * Checking a Piece's color
+	 * @return
+	 */
+	public boolean isBlack(){
+		return this.color == Color.BLACK;
+	}
+
 	public void setType(Type type){
 		this.type = type; 
 	}
