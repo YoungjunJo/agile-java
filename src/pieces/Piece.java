@@ -8,8 +8,6 @@ import pieces.Piece.Color;
  */
 
 public class Piece {
-	//public static final String WHITE = "WHITE";
-	//public static final String BLACK = "BLACK";
 	public static final int CHESS_ROW = 8 ;
 	public static final int CHESS_COLUMN = 8 ;
 	final static char PAWN_REPRESENTATION='p';
@@ -19,14 +17,10 @@ public class Piece {
 	final static char QUEEN_REPRESENTATION='q';
 	final static char KING_REPRESENTATION='k';
 	
-	
-	//private Color color;
-	//private String name;
 	static int count;
 	public Type type;
 	public Color color;
 	public char representation;
-	
 	
 	private static class WhitePiece extends Piece{
 		WhitePiece(Type type, char representation) {
@@ -56,7 +50,7 @@ public class Piece {
 	}
 	
 	
-	static class NoPiece extends Piece{
+	private static class NoPiece extends Piece{
 		NoPiece(){
 			this.color = Color.NONE;
 			this.type = Type.NO_PIECE;
@@ -70,33 +64,10 @@ public class Piece {
 	 */	
 	public enum Color{
 		WHITE, BLACK, NONE;
-		//WHITE("white"), BLACK("black"), NONE("none");
-		//""없이 선언하면 상수가 되는데, 상수로 사용하면 안되나?;
-		
-		/*
-		public String color;
-		Color(String color){
-			this.color=color;
-		}
-		String getColor(){
-			return this.color;
-		}
-		*/
 	};
 	
 	public enum Type{
 		PAWN, ROOK, KNIGHT,BISHOP, QUEEN, KING, NO_PIECE
-		//PAWN("pawn"), ROOK("rook"), KNIGHT("knight"),
-		//BISHOP("bishop"), QUEEN("queen"), KING("king");
-		/*
-		public String name;
-		Type(String name){
-			this.name=name;
-		}
-		String getType(){
-			return this.name;
-		}
-		*/
 	}
 	
 	public char getRepresentation(){

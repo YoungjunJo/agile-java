@@ -131,4 +131,46 @@ public class Board {
 		
 		return Piece.getCount();
 	}
+	
+	public double getScore(Color color){
+		double total = 0.0;
+		int adjust = 0;
+		for(int i = 0; i < CHESS_ROW ; i++){
+			for(int j = 0; j < CHESS_COLUMN ; j++){
+				if(pieces[i][j].color == color)
+					total +=gradeScore(pieces[i][j]);
+				if(pieces[i][j].getType() == Type.PAWN)
+					adjust = findPawn(i, j);
+				if(adjust >= 2){
+					total -= (0.5 * adjust);	
+					adjust = 0;
+				}
+			}
+			
+		}
+		return total;
+	}
+	private int findPawn(int i, int j){
+		int pawnCount=1;
+		for(int k=i+1; k<CHESS_COLUMN;k++)
+		if(pieces[k][j].getType() == Type.PAWN){
+			pawnCount++;
+		}
+		return pawnCount;
+		
+	}
+	
+	
+	private double gradeScore(Piece piece){
+		if(piece.type==Type.PAWN){
+			return 1;
+		}
+		else if(piece.type==Type.KNIGHT) return 2.5;
+		else if(piece.type==Type.BISHOP) return 3;
+		else if(piece.type==Type.ROOK) return 5;
+		else if(piece.type==Type.QUEEN) return 9;
+		return 0;
+	}
+	
+	
 }
