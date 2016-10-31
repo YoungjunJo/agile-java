@@ -19,9 +19,19 @@ public class Board {
 	 * Adding a Pawn on the ArrayList
 	 * @param pawn the Pawn will be added at the ArrayList
 	 */
-	private void addPiece(int i, int j, Color color, Type type) {
-		pieces[i][j].setType(type);
-		pieces[i][j].setColor(color);
+	public void addPiece(int i, int j, Color color, Type type) {
+		if(type == Type.PAWN)
+			pieces[i][j]=Piece.createPawn(color);
+		else if(type == Type.ROOK)
+			pieces[i][j]=Piece.createRook(color);
+		else if(type == Type.KNIGHT)
+			pieces[i][j]=Piece.createKnight(color);
+		else if(type == Type.BISHOP)
+			pieces[i][j]=Piece.createBishop(color);
+		else if(type == Type.QUEEN)
+			pieces[i][j]=Piece.createQueen(color);
+		else if(type == Type.KING)
+			pieces[i][j]=Piece.createKing(color);
 	}
 	
 	/**
@@ -59,6 +69,14 @@ public class Board {
 	
 	private void noPieceInitialize() {
 		for(int i = 2; i < 6 ; i++){
+			for(int j = 0 ; j < CHESS_COLUMN ; j++){
+				pieces[i][j] = Piece.noPiece();
+			}			
+		}
+	}
+	
+	public void allNoPieceInitialize() {
+		for(int i = 0; i < CHESS_COLUMN ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
 				pieces[i][j] = Piece.noPiece();
 			}			
