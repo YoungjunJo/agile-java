@@ -14,11 +14,19 @@ public class Piece {
 	final static char BISHOP_REPRESENTATION='b';
 	final static char QUEEN_REPRESENTATION='q';
 	final static char KING_REPRESENTATION='k';
+	final static double PAWN_SCORE=1;
+	final static double ROOK_SCORE=2.5;
+	final static double KNIGHT_SCORE=3;
+	final static double BISHOP_SCORE=5;
+	final static double QUEEN_SCORE=9;
+	final static double KING_SCORE=0;
+	//question 에넘과 이거의 차이..
 	
 	static int count;
 	public Type type;
 	public Color color;
 	public char representation;
+	public double score; 
 	
 	/**
 	 * Provides a representation of a Piece's Color
@@ -34,6 +42,14 @@ public class Piece {
 		PAWN, ROOK, KNIGHT,BISHOP, QUEEN, KING, NO_PIECE
 	}
 	
+	public void setScore(double score) {
+		this.score = score;
+	}
+
+	public double getScore() {
+		return score;
+	}
+	
 	/**
 	 * Class White Piece
 	 * basically set the color as WHITE
@@ -43,6 +59,16 @@ public class Piece {
 			this.color = Color.WHITE;
 			this.type = type;
 			this.representation = representation;
+			if(this.getType()==Type.PAWN)
+				setScore(PAWN_SCORE);
+			else if(this.getType()==Type.KNIGHT)
+				setScore(KNIGHT_SCORE);
+			else if(this.getType()==Type.BISHOP)
+				setScore(BISHOP_SCORE);
+			else if(this.getType()==Type.ROOK)
+				setScore(ROOK_SCORE);
+			else if(this.getType()==Type.QUEEN)
+				setScore(QUEEN_SCORE);
 		}
 		public Type getType(){
 			return type;
@@ -58,6 +84,16 @@ public class Piece {
 			this.color = Color.BLACK;
 			this.type = type;
 			this.representation = Character.toUpperCase(representation);
+			if(this.getType()==Type.PAWN)
+				setScore(PAWN_SCORE);
+			else if(this.getType()==Type.KNIGHT)
+				setScore(KNIGHT_SCORE);
+			else if(this.getType()==Type.BISHOP)
+				setScore(BISHOP_SCORE);
+			else if(this.getType()==Type.ROOK)
+				setScore(ROOK_SCORE);
+			else if(this.getType()==Type.QUEEN)
+				setScore(QUEEN_SCORE);
 		}
 		public Type getType(){
 			return type;
