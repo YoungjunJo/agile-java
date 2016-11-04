@@ -146,7 +146,7 @@ public class Board{
 	 * @param color which side
 	 * @return total score
 	 */
-	public double getScore(Color color){
+	public double getTotalScore(Color color){
 		double total = 0.0;
 		int adjust = 0;
 		for(int i = 0; i < CHESS_ROW ; i++){

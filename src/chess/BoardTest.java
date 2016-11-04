@@ -9,7 +9,6 @@ import chess.Board;
 
 public class BoardTest extends TestCase {
 	private Board board;
-	private int k=0;
 	// question - Collection 이라는건 list, map, set형태인데 현재는 [][] 2차배열
 	// Comparable 인터페이스를 사용하려 했으나 
 	// Piece[8][8]를 가진 board에서 comapreTo(Board that)으로는 [i][j] 값을 오버라이딩 하기 어려움 시그니처가 다름 . 
@@ -29,9 +28,9 @@ public class BoardTest extends TestCase {
 		board.addPiece(3,3,Color.BLACK,Type.PAWN);
 		board.addPiece(5,3,Color.BLACK,Type.PAWN);
 		board.addPiece(3,7,Color.BLACK,Type.PAWN);
-		assertEquals(7, Piece.getCount());
+		assertEquals(6, Piece.getCount());
 		System.out.println(board.print());
-		assertEquals(4.0, board.getScore(Color.BLACK));
+		assertEquals(4.0, board.getTotalScore(Color.BLACK));
 	}
 
 }
