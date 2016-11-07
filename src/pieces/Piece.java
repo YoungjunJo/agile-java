@@ -253,6 +253,10 @@ public class Piece {
 		return count;
 	}
 	
+	public static void reSetCount() {
+		count=0;
+	}
+	
 	/**
 	 * Incrementing a Piece's count
 	 */

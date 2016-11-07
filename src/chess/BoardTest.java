@@ -19,6 +19,7 @@ public class BoardTest extends TestCase {
 		board = new Board();
 	}
 
+
 	public void testBoardCreate() {
 		board.allNoPieceInitialize();
 		assertEquals(0, Piece.getCount());
@@ -29,8 +30,19 @@ public class BoardTest extends TestCase {
 		board.addPiece(5,3,Color.BLACK,Type.PAWN);
 		board.addPiece(3,7,Color.BLACK,Type.PAWN);
 		assertEquals(6, Piece.getCount());
-		System.out.println(board.print());
+		//System.out.println(board.print());
 		assertEquals(4.0, board.getTotalScore(Color.BLACK));
+		Piece.reSetCount();
+		assertEquals(0, Piece.getCount());
+		
 	}
-
+	
+	public void testKingMove() {
+		board.allNoPieceInitialize();
+		board.addPiece(1, 1, Color.BLACK, Type.KING);
+		board.moveKing(1, 1, 2, 2);
+		Piece.reSetCount();
+		System.out.println(board.print());
+	}
+	
 }

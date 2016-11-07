@@ -35,6 +35,10 @@ public class Board{
 			pieces[i][j]=Piece.createKing(color);
 	}
 	
+	public void removePiece(int i, int j) {
+		pieces[i][j] = Piece.createNoPiece();
+	}
+	
 	/**
 	 * Getting a number of a specific Pieces
 	 * @param color WHITE or BLACK
@@ -194,4 +198,10 @@ public class Board{
 		else if(piece.type==Type.QUEEN) return 9;
 		return 0;
 	}
+	
+	public void moveKing(int i, int j, int k, int l) {
+		pieces[k][l] = pieces[i][j];
+		removePiece(i,j);
+	}
+	
 }

@@ -33,6 +33,8 @@ public class PieceTest extends TestCase {
 		assertEquals(Piece.Type.NO_PIECE, blank.getType());
 		Piece piece = Piece.createPawn(Color.WHITE);
 		assertEquals(Piece.PAWN_SCORE, piece.getMessage(Piece.Type.PAWN));
+		Piece testBlackPawn = Piece.createPawn(Color.BLACK);
+		assertEquals('P', testBlackPawn.representation.getRepresentation());
 	}
 
 	private void verifyCreation(Piece whitePiece, Piece blackPiece,
