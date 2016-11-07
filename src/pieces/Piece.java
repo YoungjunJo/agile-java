@@ -10,12 +10,15 @@ import java.util.Map;
 public class Piece {
 	public static final int CHESS_ROW = 8 ;
 	public static final int CHESS_COLUMN = 8 ;
+	
+	/*
 	final static char PAWN_REPRESENTATION='p';
 	final static char ROOK_REPRESENTATION='r';
 	final static char KNIGHT_REPRESENTATION='n';
 	final static char BISHOP_REPRESENTATION='b';
 	final static char QUEEN_REPRESENTATION='q';
 	final static char KING_REPRESENTATION='k';
+	*/
 	final static double PAWN_SCORE=1.0;
 	final static double KNIGHT_SCORE=2.5;
 	final static double BISHOP_SCORE=3.0;
@@ -27,7 +30,7 @@ public class Piece {
 	static int count;
 	public Type type;
 	public Color color;
-	public char representation;
+	public Representation representation;
 	public double score; 
 	
 	private Map<Type, Double> scores = null;
@@ -50,6 +53,24 @@ public class Piece {
 		scores.put(Type.ROOK, 5.0);
 		scores.put(Type.QUEEN, 9.0);
 	}
+	
+	public enum Representation {
+		PAWN('p'), ROOK('r'), KNIGHT('n')
+		, BISHOP('b'), QUEEN('q')
+		, KING('k'), NO_PIECE('.');
+		//이렇게 인스턴스를 미리 만들어 둬야 맞는건지 나중에 넣는게 맞는건지?
+		private char character;
+		Representation(char character) {
+			this.character = character;
+		}
+
+		public char getRepresentation() {
+			return this.character;
+		}
+
+	}
+
+
 	
 	/**
 	 * Provides a representation of a Piece's Color
@@ -78,7 +99,7 @@ public class Piece {
 	 * basically set the color as WHITE
 	 */
 	private static class WhitePiece extends Piece{
-		WhitePiece(Type type, char representation) {
+		WhitePiece(Type type, Representation representation) {
 			this.color = Color.WHITE;
 			this.type = type;
 			this.representation = representation;
@@ -107,10 +128,12 @@ public class Piece {
 	 * basically set the color as BLACK
 	 */
 	private static class BlackPiece extends Piece{
-		BlackPiece(Type type, char representation) {
+		BlackPiece(Type type, Representation representation) {
 			this.color = Color.BLACK;
 			this.type = type;
-			this.representation = Character.toUpperCase(representation);
+			this.representation = representation;
+			//question 
+			this.representation.character = Character.toUpperCase(this.representation.getRepresentation());
 			switch(type) {
 			case PAWN: setScore(PAWN_SCORE);
 				break;
@@ -139,7 +162,7 @@ public class Piece {
 		NoPiece(){
 			this.color = Color.NONE;
 			this.type = Type.NO_PIECE;
-			this.representation = '.'; 
+			this.representation = Representation.NO_PIECE; 
 		}
 	}
 	
@@ -151,49 +174,49 @@ public class Piece {
 	public static Piece createPawn(Color color){
 		incrementCount();
 		if(color==Color.WHITE)
-			return new WhitePiece(Type.PAWN, PAWN_REPRESENTATION);
+			return new WhitePiece(Type.PAWN, Representation.PAWN);
 		else
-			return new BlackPiece(Type.PAWN, PAWN_REPRESENTATION);
+			return new BlackPiece(Type.PAWN, Representation.PAWN);
 	}
 
 	public static Piece createRook(Color color){
 		incrementCount();
 		if(color==Color.WHITE)
-			return new WhitePiece(Type.ROOK, ROOK_REPRESENTATION);
+			return new WhitePiece(Type.ROOK, Representation.ROOK);
 		else
-			return new BlackPiece(Type.ROOK, ROOK_REPRESENTATION);
+			return new BlackPiece(Type.ROOK, Representation.ROOK);
 	}
 	
 	public static Piece createKnight(Color color){
 		incrementCount();
 		if(color==Color.WHITE)
-			return new WhitePiece(Type.KNIGHT, KNIGHT_REPRESENTATION);
+			return new WhitePiece(Type.KNIGHT, Representation.KNIGHT);
 		else
-			return new BlackPiece(Type.KNIGHT, KNIGHT_REPRESENTATION);
+			return new BlackPiece(Type.KNIGHT, Representation.KNIGHT);
 	}
 	
 	public static Piece createBishop(Color color){
 		incrementCount();
 		if(color==Color.WHITE)
-			return new WhitePiece(Type.BISHOP, BISHOP_REPRESENTATION);
+			return new WhitePiece(Type.BISHOP, Representation.BISHOP);
 		else
-			return new BlackPiece(Type.BISHOP, BISHOP_REPRESENTATION);
+			return new BlackPiece(Type.BISHOP, Representation.BISHOP);
 	}
 	
 	public static Piece createQueen(Color color){
 		incrementCount();
 		if(color==Color.WHITE)
-			return new WhitePiece(Type.QUEEN, QUEEN_REPRESENTATION);
+			return new WhitePiece(Type.QUEEN, Representation.QUEEN);
 		else
-			return new BlackPiece(Type.QUEEN, QUEEN_REPRESENTATION);
+			return new BlackPiece(Type.QUEEN, Representation.QUEEN);
 	}
 	
 	public static Piece createKing(Color color){
 		incrementCount();
 		if(color==Color.WHITE)
-			return new WhitePiece(Type.KING, KING_REPRESENTATION);
+			return new WhitePiece(Type.KING, Representation.KING);
 		else
-			return new BlackPiece(Type.KING, KING_REPRESENTATION);
+			return new BlackPiece(Type.KING, Representation.KING);
 	}
 	
 	/**
@@ -204,14 +227,7 @@ public class Piece {
 		Piece piece = new NoPiece();
 		return piece;
 	}
-	
-	/**
-	 * Getting a representation
-	 * @return Piece's representation
-	 */
-	public char getRepresentation(){
-		return this.representation;
-	}
+
 	
 	/**
 	 * Getting a type
@@ -267,4 +283,6 @@ public class Piece {
 	public void setColor(Color color){
 		this.color = color; 
 	}
+
+
 }

@@ -133,7 +133,7 @@ public class Board{
 		{
 			for(int j = 0; j < CHESS_COLUMN ; j++)
 			{
-				buffer.append(pieces[i][j].getRepresentation());	
+				buffer.append(pieces[i][j].representation.getRepresentation());	
 			}
 			buffer.append(NEWLINE);
 		}
