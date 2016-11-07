@@ -29,6 +29,8 @@ public class PieceTest extends TestCase {
 		Piece blank = Piece.createNoPiece();
 		assertEquals('.',blank.getRepresentation());
 		assertEquals(Piece.Type.NO_PIECE, blank.getType());
+		Piece piece = Piece.createPawn(Color.WHITE);
+		assertEquals(Piece.PAWN_SCORE, piece.getMessage(Piece.Type.PAWN));
 	}
 
 	private void verifyCreation(Piece whitePiece, Piece blackPiece,

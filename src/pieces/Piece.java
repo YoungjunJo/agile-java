@@ -1,5 +1,7 @@
 package pieces;
 
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Provides a representation of a Piece
@@ -14,12 +16,12 @@ public class Piece {
 	final static char BISHOP_REPRESENTATION='b';
 	final static char QUEEN_REPRESENTATION='q';
 	final static char KING_REPRESENTATION='k';
-	final static double PAWN_SCORE=1;
+	final static double PAWN_SCORE=1.0;
 	final static double KNIGHT_SCORE=2.5;
-	final static double BISHOP_SCORE=3;
-	final static double ROOK_SCORE=5;
-	final static double QUEEN_SCORE=9;
-	final static double KING_SCORE=0;
+	final static double BISHOP_SCORE=3.0;
+	final static double ROOK_SCORE=5.0;
+	final static double QUEEN_SCORE=9.0;
+	final static double KING_SCORE=0.0;
 	//question 에넘과 이거의 차이..
 	
 	static int count;
@@ -27,6 +29,27 @@ public class Piece {
 	public Color color;
 	public char representation;
 	public double score; 
+	
+	private Map<Type, Double> scores = null;
+	
+	public double getMessage(Piece.Type type) {
+		return getMessages().get(type);
+	}
+	
+	private Map<Type, Double> getMessages() {
+		if (scores==null)
+			loadScores();
+		return scores;
+	}
+	
+	private void loadScores() {
+		scores = new EnumMap<Type, Double> (Type.class);
+		scores.put(Type.PAWN, 1.0);
+		scores.put(Type.KNIGHT, 2.5);
+		scores.put(Type.BISHOP, 3.0);
+		scores.put(Type.ROOK, 5.0);
+		scores.put(Type.QUEEN, 9.0);
+	}
 	
 	/**
 	 * Provides a representation of a Piece's Color
