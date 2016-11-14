@@ -11,21 +11,12 @@ public class Piece {
 	public static final int CHESS_ROW = 8 ;
 	public static final int CHESS_COLUMN = 8 ;
 	
-	/*
-	final static char PAWN_REPRESENTATION='p';
-	final static char ROOK_REPRESENTATION='r';
-	final static char KNIGHT_REPRESENTATION='n';
-	final static char BISHOP_REPRESENTATION='b';
-	final static char QUEEN_REPRESENTATION='q';
-	final static char KING_REPRESENTATION='k';
-	*/
 	final static double PAWN_SCORE=1.0;
 	final static double KNIGHT_SCORE=2.5;
 	final static double BISHOP_SCORE=3.0;
 	final static double ROOK_SCORE=5.0;
 	final static double QUEEN_SCORE=9.0;
 	final static double KING_SCORE=0.0;
-	//question 에넘과 이거의 차이..
 	
 	static int count;
 	public Type type;
@@ -69,9 +60,6 @@ public class Piece {
 		}
 
 	}
-
-
-	
 	/**
 	 * Provides a representation of a Piece's Color
 	 */	
@@ -287,6 +275,7 @@ public class Piece {
 	public void setColor(Color color){
 		this.color = color; 
 	}
+
 
 
 }
