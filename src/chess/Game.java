@@ -148,4 +148,27 @@ public class Game {
 		return 0;
 	}
 	
+	/**
+	 * Getting a number of a specific Pieces
+	 * @param color WHITE or BLACK
+	 * @param type  PAWN/ROOK/KINGHT/BISHOP/QUEEN/KING
+	 * @return Returns the number of a specific Pieces on the Board
+	 */
+	public int getNumberOfSpecificPiece(Color color, Type type) {
+		//question for문(자료형 변수:배열) 형식으로 2중배열도 가능한가
+		for(int i = 0 ; i < CHESS_COLUMN ; i++)
+			for(int j = 0 ; j < CHESS_COLUMN ; j++)
+				if((board.pieces[i][j].getType()==type) && (board.pieces[i][j].getColor()==color)){
+					board.piecesCount++;
+				}
+		return board.piecesCount;				
+	}
+	
+	public void moveKing(int i, int j, int k, int l) {
+		if(  (k-i)*(k-i) + (j-l)*(j-l) <= 2 ) {
+		board.pieces[k][l] = board.pieces[i][j];
+		board.removePiece(i,j);
+		}
+	}
+	
 }

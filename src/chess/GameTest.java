@@ -23,17 +23,13 @@ public class GameTest extends TestCase {
 		assertEquals(1.5, game.getTotalScore(Color.BLACK));
 		Piece.reSetCount();
 		assertEquals(0, Piece.getCount());
-		
-		
 	}
-	/*
+	
 	public void testKingMove() {
 		game.allNoPieceInitialize();
 		game.board.addPiece(1, 1, Color.BLACK, Type.KING);
-		game.board.moveKing(1, 1, 1, 3);
+		game.moveKing(1, 1, 1, 4);
 		Piece.reSetCount();
 		System.out.println(game.print());
 	}
-	*/
-	
 }

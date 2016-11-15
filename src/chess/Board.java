@@ -40,42 +40,13 @@ public class Board{
 		pieces[i][j] = Piece.createNoPiece();
 	}
 	
-	/**
-	 * Getting a number of a specific Pieces
-	 * @param color WHITE or BLACK
-	 * @param type  PAWN/ROOK/KINGHT/BISHOP/QUEEN/KING
-	 * @return Returns the number of a specific Pieces on the Board
-	 */
-	public int getNumberOfSpecificPiece(Color color, Type type) {
-		//question for문(자료형 변수:배열) 형식으로 2중배열도 가능한가
-		for(int i = 0 ; i < CHESS_COLUMN ; i++)
-			for(int j = 0 ; j < CHESS_COLUMN ; j++)
-				if((pieces[i][j].getType()==type) && (pieces[i][j].getColor()==color)){
-					piecesCount++;
-				}
-		return piecesCount;				
-	}
-	
+
 	/**
 	 * Getting a specific position Piece
 	 * @return Returns a Piece
 	 */
 	public Piece getPiece(int i, int j) {
 		return pieces[i][j];
-	}
-	
-	/**
-	 * Initializing all Pieces on the chess board
-	 */
-	
-	
-
-	
-	public void moveKing(int i, int j, int k, int l) {
-		if(  (k-i)*(k-i) + (j-l)*(j-l) <= 2 ) {
-		pieces[k][l] = pieces[i][j];
-		removePiece(i,j);
-		}
 	}
 	
 }
