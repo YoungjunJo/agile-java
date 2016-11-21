@@ -12,7 +12,7 @@ import static pieces.Piece.CHESS_COLUMN;
  * @author JYJ
  */
 public class Board{
-	Piece[][] pieces =new Piece[8][8];
+	static Piece[][] pieces =new Piece[8][8];
 	int piecesCount=0;
 	
 	/**
@@ -36,7 +36,7 @@ public class Board{
 			pieces[i][j]=Piece.createKing(color);
 	}
 	
-	public void removePiece(int i, int j) {
+	public static void removePiece(int i, int j) {
 		pieces[i][j] = Piece.createNoPiece();
 	}
 	
@@ -45,8 +45,42 @@ public class Board{
 	 * Getting a specific position Piece
 	 * @return Returns a Piece
 	 */
-	public Piece getPiece(int i, int j) {
+	public static Piece getPiece(int i, int j) {
 		return pieces[i][j];
 	}
 	
+	
+	public static void movePiece(int i, int j, int k, int l) {
+		Piece piece = getPiece(i,j);
+		if(piece.getType() == Type.KING) {
+			moveKing(i, j, k, l);
+		}
+		else if(piece.getType() == Type.QUEEN) {
+			moveQueen(i, j, k, l);
+		}
+
+	}
+	
+	public static void moveKing(int presentY, int presentX, int movingY, int movingX) {
+		if(  (movingY-presentY)*(movingY-presentY) + (presentX-movingX)*(presentX-movingX) <= 2 ) {
+		pieces[movingY][movingX] = pieces[presentY][presentX];
+		removePiece(presentY, presentX);
+		}
+	}
+	
+	public static void moveQueen(int presentY, int presentX, int movingY, int movingX) {
+		if(presentY - movingY == presentX - movingX) {
+		pieces[movingY][movingX] = pieces[presentY][presentX];
+		removePiece(presentY, presentX);	
+		}
+		else if(presentY == movingY) { 
+		pieces[movingY][movingX] = pieces[presentY][presentX];
+		removePiece(presentY, presentX);
+		}
+		else if(presentX == movingX) { 
+		pieces[movingY][movingX] = pieces[presentY][presentX];
+		removePiece(presentY, presentX);
+		}
+		
+	}
 }

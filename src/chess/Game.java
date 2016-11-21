@@ -163,12 +163,6 @@ public class Game {
 				}
 		return board.piecesCount;				
 	}
-	
-	public void moveKing(int i, int j, int k, int l) {
-		if(  (k-i)*(k-i) + (j-l)*(j-l) <= 2 ) {
-		board.pieces[k][l] = board.pieces[i][j];
-		board.removePiece(i,j);
-		}
-	}
+
 	
 }

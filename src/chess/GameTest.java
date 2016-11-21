@@ -28,7 +28,9 @@ public class GameTest extends TestCase {
 	public void testKingMove() {
 		game.allNoPieceInitialize();
 		game.board.addPiece(1, 1, Color.BLACK, Type.KING);
-		game.moveKing(1, 1, 1, 4);
+		game.board.movePiece(1, 1, 2, 2);
+		game.board.addPiece(0, 3, Color.BLACK, Type.QUEEN);
+		game.board.movePiece(0, 3, 3, 6);
 		Piece.reSetCount();
 		System.out.println(game.print());
 	}
