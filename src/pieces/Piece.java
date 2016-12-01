@@ -49,7 +49,7 @@ public class Piece {
 		PAWN('p'), ROOK('r'), KNIGHT('n')
 		, BISHOP('b'), QUEEN('q')
 		, KING('k'), NO_PIECE('.');
-		//이렇게 인스턴스를 미리 만들어 둬야 맞는건지 나중에 넣는게 맞는건지?
+		
 		private char character;
 		Representation(char character) {
 			this.character = character;
@@ -206,6 +206,23 @@ public class Piece {
 		else
 			return new BlackPiece(Type.KING, Representation.KING);
 	}
+	
+	public static Piece createKing2(Color color){
+		incrementCount();
+		if(color==Color.WHITE)
+			return new WhitePiece(Type.KING, Representation.KING);
+		else
+			return new BlackPiece(Type.KING, Representation.KING);
+	}
+	
+    public boolean getPossibleMoves( int sourceY, int sourceX, int destY, int destX){
+        if(sourceX == destX && sourceY == destY)
+            return false; //cannot move nothing
+        if(sourceY < 0 || sourceY > 7 || sourceX < 0 || sourceX > 7 || destY < 0 || destY > 7 || destX <0 || destX > 7)
+            return false; //out of board
+        return true;
+    }
+	
 	
 	/**
 	 * Factory method constructing NoPiece

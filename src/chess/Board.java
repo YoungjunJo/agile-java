@@ -3,17 +3,14 @@ package chess;
 import pieces.Piece;
 import pieces.Piece.Color;
 import pieces.Piece.Type;
-import static util.StringUtil.NEWLINE;
-import static pieces.Piece.CHESS_ROW;
-import static pieces.Piece.CHESS_COLUMN;
 
 /**
  * Provides a representation of a Chess Board
  * @author JYJ
  */
 public class Board{
-	static Piece[][] pieces =new Piece[8][8];
-	int piecesCount=0;
+	Piece[][] pieces = new Piece[8][8];
+	int piecesCount = 0;
 	
 	/**
 	 * Adding a Piece on the board
@@ -36,7 +33,7 @@ public class Board{
 			pieces[i][j]=Piece.createKing(color);
 	}
 	
-	public static void removePiece(int i, int j) {
+	public void removePiece(int i, int j) {
 		pieces[i][j] = Piece.createNoPiece();
 	}
 	
@@ -45,12 +42,12 @@ public class Board{
 	 * Getting a specific position Piece
 	 * @return Returns a Piece
 	 */
-	public static Piece getPiece(int i, int j) {
+	public Piece getPiece(int i, int j) {
 		return pieces[i][j];
 	}
 	
 	
-	public static void movePiece(int i, int j, int k, int l) {
+	public void movePiece(int i, int j, int k, int l) {
 		Piece piece = getPiece(i,j);
 		if(piece.getType() == Type.KING) {
 			moveKing(i, j, k, l);
@@ -61,14 +58,14 @@ public class Board{
 
 	}
 	
-	public static void moveKing(int presentY, int presentX, int movingY, int movingX) {
+	public void moveKing(int presentY, int presentX, int movingY, int movingX) {
 		if(  (movingY-presentY)*(movingY-presentY) + (presentX-movingX)*(presentX-movingX) <= 2 ) {
 		pieces[movingY][movingX] = pieces[presentY][presentX];
 		removePiece(presentY, presentX);
 		}
 	}
 	
-	public static void moveQueen(int presentY, int presentX, int movingY, int movingX) {
+	public void moveQueen(int presentY, int presentX, int movingY, int movingX) {
 		if(presentY - movingY == presentX - movingX) {
 		pieces[movingY][movingX] = pieces[presentY][presentX];
 		removePiece(presentY, presentX);	

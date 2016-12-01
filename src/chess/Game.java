@@ -155,7 +155,7 @@ public class Game {
 	 * @return Returns the number of a specific Pieces on the Board
 	 */
 	public int getNumberOfSpecificPiece(Color color, Type type) {
-		//question for문(자료형 변수:배열) 형식으로 2중배열도 가능한가
+
 		for(int i = 0 ; i < CHESS_COLUMN ; i++)
 			for(int j = 0 ; j < CHESS_COLUMN ; j++)
 				if((board.pieces[i][j].getType()==type) && (board.pieces[i][j].getColor()==color)){
