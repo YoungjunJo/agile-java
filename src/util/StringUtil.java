@@ -7,6 +7,8 @@ package util;
 
 public class StringUtil {
 	private StringUtil(){}
+	public static final int CHESS_ROW = 8 ;
+	public static final int CHESS_COLUMN = 8 ;
 	public static final String NEWLINE = 
 			System.getProperty("line.separator");
 	/**

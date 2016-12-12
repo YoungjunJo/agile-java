@@ -1,12 +1,11 @@
 package chess;
 
-import static pieces.Piece.CHESS_COLUMN;
-import static pieces.Piece.CHESS_ROW;
+import static util.StringUtil.CHESS_COLUMN;
+import static util.StringUtil.CHESS_ROW;
 import static util.StringUtil.NEWLINE;
 
-import pieces.Piece;
+import pieces.*;
 import pieces.Piece.Color;
-import pieces.Piece.Type;
 
 public class Game {
 	public Board board = new Board();
@@ -32,18 +31,18 @@ public class Game {
 	public void noPieceInitialize() {
 		for(int i = 2; i < 6 ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
-				board.pieces[i][j] = Piece.createNoPiece();
+				board.pieces[i][j] = Blank.create(Color.NONE);
 			}			
 		}
 	}
-	
 	/**
 	 * Initializing the noPiece(blank) at every row on the Board
 	 */
 	public void allNoPieceInitialize() {
 		for(int i = 0; i < CHESS_COLUMN ; i++){
 			for(int j = 0 ; j < CHESS_COLUMN ; j++){
-				board.pieces[i][j] = Piece.createNoPiece();
+				Piece p = Blank.create(Color.NONE);
+				board.pieces[i][j] = p;
 			}			
 		}
 	}
@@ -53,36 +52,35 @@ public class Game {
 	 */
 	private void blackInitialize() {
 		for(int i = 0 ; i< CHESS_COLUMN ; i++){
-			board.pieces[1][i] = Piece.createPawn(Color.BLACK);
+			board.pieces[1][i] = Pawn.create(Color.BLACK);
 		}
-		board.pieces[0][0] = Piece.createRook(Color.BLACK);
-		board.pieces[0][1] = Piece.createKnight(Color.BLACK);
-		board.pieces[0][2] = Piece.createBishop(Color.BLACK);
-		board.pieces[0][3] = Piece.createQueen(Color.BLACK);
-		board.pieces[0][4] = Piece.createKing(Color.BLACK);
-		board.pieces[0][5] = Piece.createBishop(Color.BLACK);
-		board.pieces[0][6] = Piece.createKnight(Color.BLACK);
-		board.pieces[0][7] = Piece.createRook(Color.BLACK);
+		board.pieces[0][0] = Rook.create(Color.BLACK);
+		board.pieces[0][1] = Knight.create(Color.BLACK);
+		board.pieces[0][2] = Bishop.create(Color.BLACK);
+		board.pieces[0][3] = Queen.create(Color.BLACK);
+		board.pieces[0][4] = King.create(Color.BLACK);
+		board.pieces[0][5] = Bishop.create(Color.BLACK);
+		board.pieces[0][6] = Knight.create(Color.BLACK);
+		board.pieces[0][7] = Rook.create(Color.BLACK);
 	}
-	
 	/**
 	 * Initializing White Pieces
 	 */
 	private void whiteInitialize() {
 		for(int i = 0 ; i< CHESS_COLUMN ; i++){
-			board.pieces[6][i] = Piece.createPawn(Piece.Color.WHITE);
+			board.pieces[6][i] = Pawn.create(Piece.Color.WHITE);
 		}
-		board.pieces[7][0] = Piece.createRook(Color.WHITE);
-		board.pieces[7][1] = Piece.createKnight(Color.WHITE);
-		board.pieces[7][2] = Piece.createBishop(Color.WHITE);
-		board.pieces[7][3] = Piece.createQueen(Color.WHITE);
-		board.pieces[7][4] = Piece.createKing(Color.WHITE);
-		board.pieces[7][5] = Piece.createBishop(Color.WHITE);
-		board.pieces[7][6] = Piece.createKnight(Color.WHITE);
-		board.pieces[7][7] = Piece.createRook(Color.WHITE);
+		board.pieces[7][0] = Rook.create(Color.WHITE);
+		board.pieces[7][1] = Knight.create(Color.WHITE);
+		board.pieces[7][2] = Bishop.create(Color.WHITE);
+		board.pieces[7][3] = Queen.create(Color.WHITE);
+		board.pieces[7][4] = King.create(Color.WHITE);
+		board.pieces[7][5] = Bishop.create(Color.WHITE);
+		board.pieces[7][6] = Knight.create(Color.WHITE);
+		board.pieces[7][7] = Rook.create(Color.WHITE);
 
 	}
-	
+
 	/**
 	 * Printing the board state
 	 */
@@ -91,8 +89,15 @@ public class Game {
 		for(int i = 0; i < CHESS_ROW ; i++)
 		{
 			for(int j = 0; j < CHESS_COLUMN ; j++)
-			{
-				buffer.append(board.pieces[i][j].representation.getRepresentation());	
+			{	
+				if(board.pieces[i][j].getColor()==Color.BLACK) {
+					buffer.append( Character.toUpperCase(board.pieces[i][j].representation.getRepresentation()));
+				}
+					
+				else {
+					buffer.append(board.pieces[i][j].representation.getRepresentation());
+				}
+						
 			}
 			buffer.append(NEWLINE);
 		}
@@ -111,7 +116,7 @@ public class Game {
 			for(int j = 0; j < CHESS_COLUMN ; j++){
 				if(board.pieces[i][j].color == color)
 					total +=gradeScore(board.pieces[i][j]);
-				if( (board.pieces[i][j].getType() == Type.PAWN) && (isMorePawn(j)<1) ){
+				if( (board.pieces[i][j].getClass() == Pawn.class) && (isMorePawn(j)<1) ){
 					total += 0.5;
 				}
 			}
@@ -128,7 +133,7 @@ public class Game {
 	private int isMorePawn(int j){
 		int count=0;
 		for(int k = 0 ; k<CHESS_COLUMN;k++)
-		if(board.pieces[k][j].getType() == Type.PAWN){
+		if(board.pieces[k][j].getClass() == Pawn.class){
 			count++;
 		}
 		return count;
@@ -140,11 +145,11 @@ public class Game {
 	 * @return
 	 */
 	private double gradeScore(Piece piece){
-		if(piece.type==Type.PAWN)return 0.5;
-		else if(piece.type==Type.KNIGHT) return 2.5;
-		else if(piece.type==Type.BISHOP) return 3;
-		else if(piece.type==Type.ROOK) return 5;
-		else if(piece.type==Type.QUEEN) return 9;
+		if(piece.getClass() == Pawn.class)return 0.5;
+		else if(piece.getClass() == Knight.class) return 2.5;
+		else if(piece.getClass() == Bishop.class) return 3;
+		else if(piece.getClass() == Rook.class) return 5;
+		else if(piece.getClass() == Queen.class) return 9;
 		return 0;
 	}
 	
@@ -154,11 +159,11 @@ public class Game {
 	 * @param type  PAWN/ROOK/KINGHT/BISHOP/QUEEN/KING
 	 * @return Returns the number of a specific Pieces on the Board
 	 */
-	public int getNumberOfSpecificPiece(Color color, Type type) {
+	public int getNumberOfSpecificPiece(Color color, Piece piece) {
 
 		for(int i = 0 ; i < CHESS_COLUMN ; i++)
 			for(int j = 0 ; j < CHESS_COLUMN ; j++)
-				if((board.pieces[i][j].getType()==type) && (board.pieces[i][j].getColor()==color)){
+				if((board.pieces[i][j].getClass() == piece.getClass()) && (board.pieces[i][j].getColor()==color)){
 					board.piecesCount++;
 				}
 		return board.piecesCount;				
